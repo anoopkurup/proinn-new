@@ -108,7 +108,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
 /* logos */
 .logos ul { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px 32px; align-items: center; }
-.logos img { max-height: 44px; width: auto; margin: 0 auto; object-fit: contain; }
+.logos img { width: 100%; max-width: 130px; aspect-ratio: 1; object-fit: contain; margin: 0 auto; }
 @media (max-width: 1000px) { .logos ul { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 480px) { .logos ul { grid-template-columns: repeat(2, 1fr); } }
 
@@ -159,7 +159,7 @@ details.faq p { padding-bottom: 16px; max-width: 70ch; color: var(--steel); }
 
 /* testimonials page */
 .letters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.letters .sheet img { aspect-ratio: 3 / 4; object-fit: cover; object-position: top; }
+.letters .sheet img { aspect-ratio: 3 / 4; object-fit: contain; object-position: top; background: #fff; }
 @media (max-width: 860px) { .letters { grid-template-columns: 1fr; max-width: 560px; } }
 .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; }
 .quotes .quote blockquote { font-size: 18px; }

@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, levels } from '../data/site';
+const interests = [...levels.map(l => `PROINN ${l.name}`), 'Corporate workshop', 'The-AIP mentoring', 'Consultancy', 'Something else'];
+---
+<Base title="Contact" description="Call, email or write to PROINN in Bengaluru about TRIZ and DFP certification, corporate workshops, mentoring or consultancy.">
+  <section class="intro">
+    <div class="wrap">
+      <h1>Contact</h1>
+      <p class="lede">Tell us which program or problem you have in mind. We reply within two working days.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap two">
+      <form action={site.formAction} method="POST">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" />
+        <label for="org">Company</label>
+        <input id="org" name="company" type="text" autocomplete="organization" />
+        <label for="interest">I am interested in</label>
+        <select id="interest" name="interest">{interests.map(o => <option>{o}</option>)}</select>
+        <label for="message">Message</label>
+        <textarea id="message" name="message"></textarea>
+        <label class="check"><input type="checkbox" name="updates" value="yes" />Email me about upcoming workshops and the TRIZ conference.</label>
+        <button class="btn" type="submit">Send message</button>
+      </form>
+      <div class="prose">
+        <h2>Or directly</h2>
+        <p><a href={site.phoneHref}>{site.phone}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p>Proinn Consultancy®<br />{site.address}</p>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Preselect the program from ?program=Beginner
+    const p = new URLSearchParams(location.search).get('program');
+    const s = document.getElementById('interest') as HTMLSelectElement | null;
+    if (p && s) for (const o of s.options) if (o.text === `PROINN ${p}`) o.selected = true;
+  </script>
+</Base>

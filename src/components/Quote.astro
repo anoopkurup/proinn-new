@@ -1,0 +1,11 @@
+---
+import type { Quote } from '../data/site';
+const q = Astro.props.q as Quote;
+---
+<div class="quote">
+  <blockquote>“{q.text}”</blockquote>
+  <footer>
+    <img src={q.img} alt="" width="44" height="44" loading="lazy" />
+    <div><b><a href={q.href} rel="noopener">{q.name}</a></b>{q.role}{q.org ? `, ${q.org}` : ''}{q.note ? `. ${q.note}` : ''}</div>
+  </footer>
+</div>

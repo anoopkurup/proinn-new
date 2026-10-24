@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { corporate, individual, linkedin } from '../data/site';
+import Quote from '../components/Quote.astro';
+---
+<Base title="Testimonials" description="Letters from Mahindra, Rolls-Royce and TVS Motor, and quotes from engineers who filed patents after PROINN TRIZ and DFP workshops.">
+  <section class="intro">
+    <div class="wrap">
+      <h1>What the inventors say</h1>
+      <p class="lede">Letters from three companies, quotes from engineers who went on to file patents, and recommendations on LinkedIn. Names and patent counts are theirs.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Letters from companies</h2>
+      <div class="letters">
+        {corporate.map((c, i) => (
+          <figure class="sheet">
+            <a href={c.img}><img src={c.img} alt={`Letter from ${c.who}`} loading="lazy" /></a>
+            <figcaption class="cap"><b>Fig. {i + 1}</b> {c.href ? <a href={c.href} rel="noopener">{c.who}</a> : c.who}. {c.sum} <a href={c.img}>Read the full letter.</a></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>From participants</h2>
+      <div class="quotes">{individual.map(q => <Quote q={q} />)}</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Recommendations on LinkedIn</h2>
+      <div class="quotes">{linkedin.map(q => <Quote q={q} />)}</div>
+      <p class="cap">More on <a href="https://www.linkedin.com/in/titokishan/" rel="noopener">Tito Kishan Vemuri's LinkedIn profile</a>.</p>
+    </div>
+  </section>
+</Base>

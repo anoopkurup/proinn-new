@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import { site, nav } from '../data/site';
+const { title, description } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = nav.map(([label, href]) => ({ label, href, current: path === href }));
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} · PROINN</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label="PROINN home"><img src="/images/logo.png" alt="PROINN" width="492" height="93" /></a>
+      <nav aria-label="Main">
+        <ul>{links.map(l => <li><a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a></li>)}</ul>
+      </nav>
+      <details>
+        <summary>Menu</summary>
+        <nav aria-label="Main">
+          <ul>{links.map(l => <li><a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a></li>)}</ul>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <main><slot /></main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <img src="/images/logo.png" alt="PROINN" width="492" height="93" />
+        <p style="margin-top:12px">Proinn Consultancy®, {site.address}</p>
+      </div>
+      <ul>
+        {links.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+        <li><a href={site.phoneHref}>{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, clients, levels, featured } from '../data/site';
+const cells = [[2,1],[5,3],[9,2],[13,5],[7,7],[16,4],[11,9]];
+---
+<Base title="Grow as an innovation and IP leader" description="PROINN turns engineers into inventors. TRIZ and DFP certification programs for Indian professionals, taught by Tito Kishan Vemuri, MATRIZ board member and India's first TRIZ level 4.">
+  <section class="hero">
+    <div class="matrix" aria-hidden="true">{cells.map(([x, y]) => <i style={`left:${x * 48 + 1}px;top:${y * 48 + 1}px`}></i>)}</div>
+    <div class="wrap">
+      <div>
+        <h1>Grow as an innovation and IP leader</h1>
+        <p class="lede">PROINN® teaches engineers to invent on demand. TRIZ and DFP® certification in three levels, taught by the person who led GE Energy India to 850+ US patents.</p>
+        <a class="btn" href="/programs">See the programs</a>
+      </div>
+      <figure class="sheet">
+        <img src="/images/testi-mahindra.png" alt="Letter of recommendation from Mahindra & Mahindra. Three senior engineers trained by Tito Kishan were recognised as prolific inventors." width="1505" height="1945" loading="eager" />
+        <figcaption class="cap"><b>Fig. 1</b> Letter from Dr Shankar Venugopal, Vice President, Mahindra &amp; Mahindra. Three engineers he trained are now prolific inventors.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="path">
+    <div class="wrap">
+      <h2>One path, three levels</h2>
+      <p class="lede">Each level is a MATRIZ TRIZ workshop, a DFP-Institute patent workshop, and The-AIP™ group mentoring on a real problem.</p>
+      <ol>
+        {levels.map((l, i) => (
+          <li>
+            <div class="n" aria-hidden="true">{i + 1}</div>
+            <h3>PROINN {l.name}</h3>
+            <p class="tag">{l.tag}</p>
+            <dl>
+              <dt>Learn</dt><dd>TRIZ level {i + 1} and DFP level {i + 1}</dd>
+              <dt>Hours</dt><dd><span class="num">{l.hours}</span> in total</dd>
+              <dt>Certified by</dt><dd>MATRIZ, DFP-Institute</dd>
+              <dt>Afterwards</dt><dd>{l.after}</dd>
+            </dl>
+            <a href={`/programs#${l.id}`}>About {l.name}</a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="founder">
+    <div class="wrap">
+      <figure class="sheet">
+        <img src="/images/founder.jpg" alt="Tito Kishan Vemuri" width="640" height="640" loading="lazy" />
+        <figcaption class="cap"><b>Fig. 2</b> Tito Kishan Vemuri, founder</figcaption>
+      </figure>
+      <div>
+        <h2>Taught by one person, for ten years</h2>
+        <ul>
+          <li>Led IP at GE Energy India engineering: 850+ US patents filed in about six years.</li>
+          <li>100+ MATRIZ certification workshops since 2015, 1000+ inventors groomed.</li>
+          <li>MATRIZ board member 2024–26, TRIZ Champion 2022, India's first TRIZ level 4.</li>
+        </ul>
+        <a class="btn ghost" href="/about">About the founder</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos">
+    <div class="wrap">
+      <h2>Where the inventors work</h2>
+      <ul>{clients.map(c => <li><img src={c.src} alt={c.alt} loading="lazy" /></li>)}</ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="quote">
+        <blockquote>“{featured.text}”</blockquote>
+        <footer>
+          <img src={featured.img} alt="" width="56" height="56" loading="lazy" />
+          <div><b>{featured.name}</b>{featured.role}, {featured.org}. {featured.note}</div>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip">
+    <div class="wrap">
+      <ul>
+        <li><a href={site.phoneHref}>{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+      <a class="btn" href="/contact">Send a message</a>
+    </div>
+  </section>
+</Base>

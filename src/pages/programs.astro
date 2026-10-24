@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import { levels, events, faq } from '../data/site';
+---
+<Base title="Programs" description="PROINN Beginner, Advanced and Expert. TRIZ levels 1 to 3 certified by MATRIZ, DFP levels 1 to 3 certified by DFP-Institute, and The-AIP group mentoring.">
+  <section class="intro">
+    <div class="wrap">
+      <h1>Three levels. Pick the one that matches your problem.</h1>
+      <p class="lede">Beginner is for inventing in a product. Advanced is for inventing in a process. Expert is for inventing at system level and setting IP strategy. Each needs the one before it.</p>
+    </div>
+  </section>
+
+  {levels.map((l, i) => (
+    <section id={l.id}>
+      <div class="wrap level">
+        <div class="n" aria-hidden="true">{i + 1}</div>
+        <div>
+          <h2>PROINN® {l.name}</h2>
+          <p class="lede">{l.tag}. TRIZ level {i + 1} and DFP® level {i + 1}, then The-AIP™.</p>
+          <div class="cols">
+            <div><h4>What you learn</h4><p>{l.learn}</p></div>
+            <div><h4>What you can do afterwards</h4><p>{l.after}</p></div>
+            <div>
+              <h4>Time</h4>
+              <p>TRIZ level {i + 1}: {l.triz}.<br />DFP level {i + 1}: {l.dfp}.<br />The-AIP: {l.aip}, four hours each weekend.</p>
+            </div>
+            <div>
+              <h4>Certified by</h4>
+              <p>MATRIZ for TRIZ level {i + 1}. DFP-Institute for DFP level {i + 1}. Proinn for The-AIP. None of them expire.</p>
+            </div>
+          </div>
+          <p style="margin-top:24px"><a class="btn" href={`/contact?program=${l.name}`}>Register for {l.name}</a></p>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section>
+    <div class="wrap">
+      <h2>What each level includes</h2>
+      <p class="lede">Every level comes as one package. You can also take only the TRIZ workshop, or TRIZ plus DFP. Ask for a quote and say which.</p>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col"></th>{levels.map(l => <th scope="col">{l.name}</th>)}</tr></thead>
+        <tbody>
+          <tr><th scope="row">TRIZ workshop</th>{levels.map((l, i) => <td>Level {i + 1}, {l.triz}</td>)}</tr>
+          <tr><th scope="row">DFP workshop</th>{levels.map((l, i) => <td>Level {i + 1}, {l.dfp}</td>)}</tr>
+          <tr><th scope="row">The-AIP mentoring</th>{levels.map(l => <td>{l.aip}</td>)}</tr>
+          <tr><th scope="row">Pre-event fast-track session</th>{levels.map(() => <td>Yes</td>)}</tr>
+          <tr><th scope="row">Book and material</th>{levels.map(l => <td>{l.book}</td>)}</tr>
+          <tr><th scope="row">Assignments</th>{levels.map(() => <td>TRIZ and DFP</td>)}</tr>
+          <tr><th scope="row">Students taught Structured Jugaad® level 1 on your behalf</th>{levels.map(l => <td><span class="num">{l.students}</span></td>)}</tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="cap">Through TRIZTI®, India's regional MATRIZ association, Proinn teaches engineering students for free. Each enrolment sponsors the number shown.</p>
+      <p style="margin-top:24px"><a class="btn" href="/contact">Ask for a quote</a></p>
+    </div>
+  </section>
+
+  <section class="events">
+    <div class="wrap">
+      <h2>Open workshop dates</h2>
+      {events.length ? (
+        <ul>{events.map(([t, d, loc]) => <li><b>{t}</b><span>{d}</span><span>{loc}</span></li>)}</ul>
+      ) : (
+        <p class="lede">No open batch is scheduled right now. Write to us and we will tell you the next one. Corporate workshops run on your dates.</p>
+      )}
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div class="prose">
+        <h2>What is TRIZ</h2>
+        <p>TRIZ is the Russian acronym for the theory of inventive problem solving. Genrich Altshuller and his colleagues built it in the USSR between 1946 and 1985 by studying hundreds of thousands of patents and asking what separated strong inventions from weak ones.</p>
+        <p>The answer was the contradiction. Strong inventions do not trade one parameter for another. They remove the trade-off. TRIZ gives you forty principles, a contradiction matrix, substance-field analysis and ARIZ to do that on purpose, in any domain.</p>
+        <p>DFP, design for patentability, is the second half. It teaches how to make an invention hard to circumvent, and how to circumvent someone else's.</p>
+      </div>
+      <figure class="sheet">
+        <img src="/images/cii-mumbai.jpg" alt="A PROINN workshop room at CII Mumbai, engineers working at tables" width="2560" height="1707" loading="lazy" />
+        <figcaption class="cap"><b>Fig. 3</b> TRIZ level 1 workshop, CII Mumbai</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Questions people ask before paying</h2>
+      {faq.map(([q, a]) => <details class="faq"><summary>{q}</summary><p>{a}</p></details>)}
+    </div>
+  </section>
+</Base>
